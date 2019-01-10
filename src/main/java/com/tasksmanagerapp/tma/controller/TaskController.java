@@ -1,5 +1,6 @@
 package com.tasksmanagerapp.tma.controller;
 
+import java.util.Collections;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -25,6 +26,8 @@ public class TaskController {
     public ModelAndView list() {
         ModelAndView model = new ModelAndView("task_list");
         List<Task> taskList = taskService.getAllTasks();
+        ObjectComparator comparator = new ObjectComparator();
+        Collections.sort(taskList, comparator);
         model.addObject("taskList", taskList);
 
         return model;

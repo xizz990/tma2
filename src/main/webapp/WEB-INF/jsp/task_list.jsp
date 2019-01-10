@@ -17,7 +17,6 @@
     <h2>Task List</h2>
     <table class="table table-striped">
         <thead>
-        <th scope="row">#ID</th>
         <th scope="row">Title</th>
         <th scope="row">Description</th>
         <th scope="row">Created</th>
@@ -28,7 +27,6 @@
         <tbody>
         <c:forEach items="${taskList}" var="task" >
             <tr>
-                <td>${task.id }</td>
                 <td>${task.name}</td>
                 <td>${task.description }</td>
                 <td>${task.dateCreated }</td>
@@ -42,7 +40,13 @@
                 </td>
                 <td>
                     <spring:url value="/task/changeDone/${task.id }" var="changeDoneURL" />
-                    <a class="btn btn-primary" href="${changeDoneURL }" role="button" >Set Done</a>
+                        <c:if test = "${task.done == true}">
+                            <a class="btn btn-primary" href="${changeDoneURL }" role="button" >Done</a>
+                        </c:if>
+
+                        <c:if test = "${task.done == false}">
+                            <a class="btn btn-primary" href="${changeDoneURL }" role="button" >Undone</a>
+                        </c:if>
                 </td>
             </tr>
         </c:forEach>
