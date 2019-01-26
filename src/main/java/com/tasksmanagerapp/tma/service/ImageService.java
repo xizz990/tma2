@@ -25,7 +25,8 @@ import java.util.List;
 @Service
 public class ImageService {
 
-    private static String UPLOAD_ROOT = "upload-dir";
+//    private static String UPLOAD_ROOT = "upload-dir";
+    private static String UPLOAD_ROOT = "/images/";
 
     private final ImageRepository repository;
     private final ResourceLoader resourceLoader;
@@ -42,7 +43,7 @@ public class ImageService {
     }
 
     public Resource findOneImage(String filename){
-        return resourceLoader.getResource("file:" + UPLOAD_ROOT + "/" + filename);
+        return resourceLoader.getResource("file: /image" + UPLOAD_ROOT + "/" + filename);
     }
 
     public void createImage(MultipartFile file) throws IOException {
@@ -69,7 +70,10 @@ public class ImageService {
 
             FileCopyUtils.copy("Test file", new FileWriter(UPLOAD_ROOT + "/test"));
             try {
-                repository.save(new Image("test2"));
+                repository.save(new Image("bin.jpeg"));
+                repository.save(new Image("bin.jpeg"));
+                repository.save(new Image("black_bg.jpeg"));
+                repository.save(new Image("dist_transf.jpeg"));
             } catch (Exception e) {
 //                e.printStackTrace();
             }

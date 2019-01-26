@@ -45,6 +45,16 @@ public class TaskController {
         return model;
     }
 
+    @RequestMapping(value="/image/", method=RequestMethod.GET)
+    public ModelAndView showImage() {
+        ModelAndView model = new ModelAndView("image");
+        Task task = new Task();
+        model.addObject("image", task);
+        model.setViewName("image");
+
+        return model;
+    }
+
     @RequestMapping(value="/updateTask/{id}", method=RequestMethod.GET)
     public ModelAndView editTask(@PathVariable long id) {
         ModelAndView model = new ModelAndView();
